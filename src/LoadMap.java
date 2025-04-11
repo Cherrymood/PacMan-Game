@@ -29,12 +29,10 @@ public class LoadMap {
     private int rowCount = 21;
     private int columnCount = 19;
     private int tileSize = 32;
-    private int boardWidth = columnCount * tileSize;
-    private int boardHeight = rowCount * tileSize;
-    HashSet<Block> walls;
-    HashSet<Block> foods;
-    HashSet<Block> ghosts;
-    Block packman;
+    private HashSet<Block> walls;
+    private HashSet<Block> foods;
+    private HashSet<Block> ghosts;
+    private Block pacman;
 
     private Images images;
 
@@ -43,6 +41,9 @@ public class LoadMap {
         walls = new HashSet<Block>();
         foods = new HashSet<Block>();
         ghosts = new HashSet<Block>();
+    }
+
+    public void loadMap(){
 
         for (int r = 0; r < rowCount; r++) {
             for (int c = 0; c < columnCount; c++) {
@@ -76,4 +77,10 @@ public class LoadMap {
             }
         }
     }
+
+    // Getter methods
+    public HashSet<Block> getWalls() { return walls; }
+    public HashSet<Block> getFoods() { return foods; }
+    public HashSet<Block> getGhosts() { return ghosts; }
+    public Block getPacman() { return pacman; }
 }
