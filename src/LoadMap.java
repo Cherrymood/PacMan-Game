@@ -57,31 +57,41 @@ public class LoadMap {
                 int x = c * tileSize;
                 int y = r * tileSize;
 
-                if (tileMapChar == 'X') { //block wall
-                    Block wall = new Block(images.wallImage, x, y, tileSize, tileSize);
-                    walls.add(wall);
-                } else if (tileMapChar == 'b') {
-                    Block ghost = new Block(images.blueGhostImage, x, y, tileSize, tileSize);
-                    ghosts.add(ghost);
-                } else if (tileMapChar == 'o') {
-                    Block ghost = new Block(images.orangeGhostImage, x, y, tileSize, tileSize);
-                    ghosts.add(ghost);
-                } else if (tileMapChar == 'p') {
-                    Block ghost = new Block(images.pinkGhostImage, x, y, tileSize, tileSize);
-                    ghosts.add(ghost);
-                } else if (tileMapChar == 'r') {
-                    Block ghost = new Block(images.redGhostImage, x, y, tileSize, tileSize);
-                    ghosts.add(ghost);
-                } else if (tileMapChar == 'P') {
-                    pacman = new Block(images.pacmanRightImage, x, y, tileSize, tileSize);
-                } else if (tileMapChar == ' ') {
-                    Block food = new Block(null, x + 14, y + 14, 4, 4);
-                    foods.add(food);
+                switch (tileMapChar) {
+                    case 'X': // Wall
+                        walls.add(new Block(images.wallImage, x, y, tileSize, tileSize));
+                        break;
+
+                    case 'b': // Blue Ghost
+                        ghosts.add(new Block(images.blueGhostImage, x, y, tileSize, tileSize));
+                        break;
+
+                    case 'o': // Orange Ghost
+                        ghosts.add(new Block(images.orangeGhostImage, x, y, tileSize, tileSize));
+                        break;
+
+                    case 'p': // Pink Ghost
+                        ghosts.add(new Block(images.pinkGhostImage, x, y, tileSize, tileSize));
+                        break;
+
+                    case 'r': // Red Ghost
+                        ghosts.add(new Block(images.redGhostImage, x, y, tileSize, tileSize));
+                        break;
+
+                    case 'P': // Pac-Man
+                        pacman = new Block(images.pacmanRightImage, x, y, tileSize, tileSize);
+                        break;
+
+                    case ' ': // Food dot
+                        foods.add(new Block(null, x + 14, y + 14, 4, 4));
+                        break;
+                    // Optional: default case for unknown characters
+                    default:
+                        break;
                 }
             }
         }
     }
-
     // Getter methods
     public HashSet<Block> getWalls() { return walls; }
     public HashSet<Block> getFoods() { return foods; }
