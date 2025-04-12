@@ -2,12 +2,12 @@ import java.awt.*;
 import java.util.HashSet;
 import java.awt.Graphics;
 
-
-public class PaintComponent extends PacMan{
+public class PaintComponent{
     final Block pacman;
     final HashSet<Block> ghosts;
     final HashSet<Block> foods;
     final HashSet<Block> walls;
+    final LoadMap loadMap;
 
     // Constructor now takes LoadMap reference
     public PaintComponent(LoadMap loadMap) {
@@ -20,7 +20,6 @@ public class PaintComponent extends PacMan{
 
     public void draw(Graphics g)
     {
-
         if (pacman != null) {
             g.drawImage(pacman.image, pacman.x, pacman.y, pacman.width, pacman.height, null);
         }
@@ -33,6 +32,7 @@ public class PaintComponent extends PacMan{
         {
             g.drawImage(wall.image, wall.x, wall.y, wall.width, wall.height, null);
         }
+
         g.setColor(Color.GREEN);
         for(Block food : foods)
         {

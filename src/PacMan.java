@@ -2,28 +2,35 @@ import java.awt.*;
 import javax.swing.*;
 
 public class PacMan extends JPanel {
-    private int rowCount = 21;
-    private int columnCount = 19;
-    private int tileSize = 32;
-    private int boardWidth = columnCount * tileSize;
-    private int boardHeight = rowCount * tileSize;
+    final int rowCount;
+    final int columnCount;
+    final int titleSize;
+    final int boardHeight;
+    final int boardWidth;
     protected LoadMap loadMap;
-    private Images images;
-    private PaintComponent paint;
+    final Images images;
+    final PaintComponent paint;
 
 
-    PacMan(){
+    PacMan(int rowCount, int columnCount, int titleSize, int boardWidth, int boardHeight){
+        this.rowCount = rowCount;
+        this.columnCount = columnCount;
+        this.titleSize = titleSize;
+        this.boardWidth = boardWidth;
+        this.boardHeight = boardHeight;
         images = new Images();
-        loadMap = new LoadMap(images);
+        loadMap = new LoadMap(images, rowCount, columnCount, titleSize);
 
         setPreferredSize(new Dimension(boardWidth,boardHeight));
         setBackground(Color.BLACK);
 
         loadMap.loadMap();
+        paint = new PaintComponent(loadMap);
     }
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        new PaintComponent(loadMap).draw(g);  // Delegate drawing to helper class
+        paint.draw(g);
     }
+
 }

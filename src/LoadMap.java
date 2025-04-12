@@ -2,7 +2,7 @@ import java.util.HashSet;
 
 public class LoadMap {
 
-    private String[] tileMap = {
+    final String[] tileMap = {
             "XXXXXXXXXXXXXXXXXXX",
             "X        X        X",
             "X XX XXX X XXX XX X",
@@ -26,17 +26,21 @@ public class LoadMap {
             "XXXXXXXXXXXXXXXXXXX"
     };
 
-    private int rowCount = 21;
-    private int columnCount = 19;
-    private int tileSize = 32;
-    private HashSet<Block> walls;
-    private HashSet<Block> foods;
-    private HashSet<Block> ghosts;
+    final int rowCount;
+    final int columnCount;
+    final int tileSize;
+
+    final HashSet<Block> walls;
+    final HashSet<Block> foods;
+    final HashSet<Block> ghosts;
     private Block pacman;
 
-    private Images images;
+    final Images images;
 
-    public LoadMap(Images images) {
+    public LoadMap(Images images, int rowCount, int columnCount, int tileSize ) {
+        this.rowCount = rowCount;
+        this.columnCount = columnCount;
+        this.tileSize = tileSize;
         this.images = images;
         walls = new HashSet<Block>();
         foods = new HashSet<Block>();
@@ -46,8 +50,8 @@ public class LoadMap {
     public void loadMap(){
 
         for (int r = 0; r < rowCount; r++) {
+            String row = tileMap[r];
             for (int c = 0; c < columnCount; c++) {
-                String row = tileMap[r];
                 char tileMapChar = row.charAt(c);
 
                 int x = c * tileSize;
@@ -69,7 +73,7 @@ public class LoadMap {
                     Block ghost = new Block(images.redGhostImage, x, y, tileSize, tileSize);
                     ghosts.add(ghost);
                 } else if (tileMapChar == 'P') {
-                    Block pacman = new Block(images.pacmanRightImage, x, y, tileSize, tileSize);
+                    pacman = new Block(images.pacmanRightImage, x, y, tileSize, tileSize);
                 } else if (tileMapChar == ' ') {
                     Block food = new Block(null, x + 14, y + 14, 4, 4);
                     foods.add(food);

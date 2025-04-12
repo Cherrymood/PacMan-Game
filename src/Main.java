@@ -15,7 +15,7 @@ public class Main {
         frame.setSize(boardWidth, boardHeight);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        PacMan pacnamGame = new PacMan();
+        PacMan pacnamGame = new PacMan(rowCount, columnCount, titleSize, boardWidth, boardHeight);
         frame.add(pacnamGame);
         frame.pack();
         frame.setVisible(true);
