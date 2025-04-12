@@ -18,6 +18,7 @@ public class Main {
         PacMan pacnamGame = new PacMan(rowCount, columnCount, titleSize, boardWidth, boardHeight);
         frame.add(pacnamGame);
         frame.pack();
+        pacnamGame.requestFocus();
         frame.setVisible(true);
     }
 }
