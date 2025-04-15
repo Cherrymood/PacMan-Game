@@ -97,4 +97,5 @@ public class LoadMap {
     public HashSet<Block> getFoods() { return foods; }
     public HashSet<Block> getGhosts() { return ghosts; }
     public Block getPacman() { return pacman; }
+
 }
