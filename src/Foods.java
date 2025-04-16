@@ -8,18 +8,16 @@ public class Foods {
         this.foods = new HashSet<>();
     }
 
-    // Add a food block
     public void add(Block food) {
         foods.add(food);
     }
 
-    // Get all food blocks
     public HashSet<Block> getFoods() {
         return foods;
     }
 
-    // Check if there are any foods left
     public boolean isEmpty() {
         return foods.isEmpty();
     }
+
 }
