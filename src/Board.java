@@ -34,7 +34,7 @@ public class Board {
     final Walls walls;
     final Foods foods;
     final Ghosts ghosts;
-    private Pacman pacman;
+    Pacman pacman;
 
     final Images images;
 
@@ -94,7 +94,7 @@ public class Board {
         }
     }
 
-    public Pacman getPacman() {
+    public Block getPacman() {
         return pacman;
     }
 

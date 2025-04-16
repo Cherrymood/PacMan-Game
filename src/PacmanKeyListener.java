@@ -1,23 +1,16 @@
-import java.awt.Component;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.HashSet;
 
 public class PacmanKeyListener implements KeyListener {
-    private final Pacman pacman;
+    private final Block pacman;
     private final HashSet<Block> walls;
     private final Images images;
 
-    public PacmanKeyListener(Pacman pacman, HashSet<Block> walls, Images images) {
+    public PacmanKeyListener(Block pacman, HashSet<Block> walls, Images images) {
         this.pacman = pacman;
         this.walls = walls;
         this.images = images;
-    }
-
-    public void registerToComponent(Component comp) {
-        comp.addKeyListener(this);
-        comp.setFocusable(true);
-        comp.requestFocusInWindow();
     }
 
     @Override
@@ -33,7 +26,7 @@ public class PacmanKeyListener implements KeyListener {
     }
     @Override
     public void keyReleased(KeyEvent e) {}
-    // Map key codes to directions
+
     private Direction keyToDirection(int keyCode) {
         return switch (keyCode) {
             case KeyEvent.VK_UP -> Direction.UP;

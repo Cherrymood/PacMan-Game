@@ -1,14 +1,16 @@
 import java.awt.*;
 import javax.swing.*;
+import java.util.HashSet;
 import java.util.Set;
 
 public class GameRenderer extends JPanel {
-    private final Pacman pacman;
+    private final Block pacman;
     private final Set<Block> ghosts;
     private final Set<Block> foods;
     private final Set<Block> walls;
+    private int score = 0;
 
-    public GameRenderer(Pacman pacman, Set<Block> ghosts, Set<Block> foods, Set<Block> walls) {
+    public GameRenderer(Block pacman, Set<Block> ghosts, Set<Block> foods, Set<Block> walls) {
         this.pacman = pacman;
         this.ghosts = ghosts;
         this.foods = foods;
@@ -43,9 +45,17 @@ public class GameRenderer extends JPanel {
             }
         }
 
-        // Draw Pacman
         if (pacman != null && pacman.image != null) {
             g.drawImage(pacman.image, pacman.x, pacman.y, pacman.width, pacman.height, null);
         }
+
+        for (Block food : foods) {
+            assert pacman != null;
+            if (pacman.collidesWith(food)) {
+                foods.remove(food);
+                score += 10;
+            }
+        }
     }
-}
+    }
+
