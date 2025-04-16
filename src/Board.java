@@ -1,6 +1,7 @@
 import java.util.HashSet;
+import java.util.Set;
 
-public class LoadMap {
+public class Board {
 
     final String[] tileMap = {
             "XXXXXXXXXXXXXXXXXXX",
@@ -30,24 +31,24 @@ public class LoadMap {
     final int columnCount;
     final int tileSize;
 
-    final HashSet<Block> walls;
-    final HashSet<Block> foods;
-    final HashSet<Block> ghosts;
-    private Block pacman;
+    final Walls walls;
+    final Foods foods;
+    final Ghosts ghosts;
+    private Pacman pacman;
 
     final Images images;
 
-    public LoadMap(Images images, int rowCount, int columnCount, int tileSize ) {
+    public Board(Images images, int rowCount, int columnCount, int tileSize ) {
         this.rowCount = rowCount;
         this.columnCount = columnCount;
         this.tileSize = tileSize;
         this.images = images;
-        walls = new HashSet<Block>();
-        foods = new HashSet<Block>();
-        ghosts = new HashSet<Block>();
+        walls = new Walls();
+        foods = new Foods();
+        ghosts = new Ghosts();
     }
 
-    public void loadMap(){
+    public void createBoard(){
 
         for (int r = 0; r < rowCount; r++) {
             String row = tileMap[r];
@@ -79,7 +80,7 @@ public class LoadMap {
                         break;
 
                     case 'P': // Pac-Man
-                        pacman = new Block(images.pacmanRightImage, x, y, tileSize, tileSize);
+                        pacman = new Pacman(images.pacmanRightImage, x, y, tileSize, tileSize);
                         break;
 
                     case ' ': // Food dot
@@ -92,10 +93,21 @@ public class LoadMap {
             }
         }
     }
-    // Getter methods
-    public HashSet<Block> getWalls() { return walls; }
-    public HashSet<Block> getFoods() { return foods; }
-    public HashSet<Block> getGhosts() { return ghosts; }
-    public Block getPacman() { return pacman; }
+
+    public Pacman getPacman() {
+        return pacman;
+    }
+
+    public HashSet<Block> getGhosts() {
+        return ghosts.getGhosts();
+    }
+
+    public HashSet<Block> getFoods() {
+        return foods.getFoods();
+    }
+
+    public HashSet<Block> getWalls() {
+        return walls.getWallBlocks();
+    }
 
 }
